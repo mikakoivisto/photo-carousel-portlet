@@ -102,9 +102,27 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 </style>
 
 <div id="<portlet:namespace />photoCarousel" class="photo-carousel">
-	<% for (FileEntry fileEntry : fileEntries) { %>
+	<% for (FileEntry fileEntry : fileEntries) {
+		String src = DLUtil.getPreviewURL(fileEntry, fileEntry.getFileVersion(), themeDisplay, "");
+		String url = null;
+		String description = fileEntry.getDescription();
+		if (description != null) {
+			int pos = description.indexOf("url:");
+			if (pos >= 0) {
+				url = description.substring(pos+4);
+			}
+		}
+	%>
 	<div class="photo-carousel-item">
-		<img src="<%= DLUtil.getPreviewURL(fileEntry, fileEntry.getFileVersion(), themeDisplay, "") %>" />
+
+		<c:choose>
+			<c:when test="<%= url != null %>">
+				<a href="<%= url %>"><img src="<%= src %>" /></a>
+			</c:when>
+			<c:otherwise>
+				<img src="<%= src %>" />
+			</c:otherwise>
+		</c:choose>
 
 		<c:if test="<%= showTitle %>">
 			<div class="lfr-asset-title">
