@@ -17,7 +17,7 @@
 					<execution>
 						<phase>generate-sources</phase>
 						<goals>
-							<goal>build-css</goal>
+							<!--goal>build-css</goal-->
 						</goals>
 					</execution>
 				</executions>
