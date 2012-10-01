@@ -40,7 +40,8 @@ page import="com.liferay.portal.kernel.repository.model.Folder" %><%@
 page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
-page import="com.liferay.portal.kernel.util.PrefsParamUtil" %>
+page import="com.liferay.portal.kernel.util.PrefsParamUtil" %><%@
+page import="com.liferay.portal.kernel.util.Validator" %>
 
 <%@ page import="java.util.List" %><%@
 page import="java.util.ArrayList" %><%@
@@ -92,6 +93,7 @@ boolean showTitle = PrefsParamUtil.getBoolean(preferences, request, "showTitle",
 boolean showDescription = PrefsParamUtil.getBoolean(preferences, request, "showDescription", false);
 boolean showModifiedDate = PrefsParamUtil.getBoolean(preferences, request, "showModifiedDate", false);
 boolean showCategorization = PrefsParamUtil.getBoolean(preferences, request, "showCategorization", false);
+boolean enableLink = PrefsParamUtil.getBoolean(preferences, request, "enableLink", true);
 
 int carouselWidth = PrefsParamUtil.getInteger(preferences, request, "carouselWidth", 300);
 int carouselHeight = PrefsParamUtil.getInteger(preferences, request, "carouselHeight", 300);

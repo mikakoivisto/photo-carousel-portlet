@@ -105,9 +105,19 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 </style>
 
 <div id="<portlet:namespace />photoCarousel" class="photo-carousel">
-	<% for (FileEntry fileEntry : fileEntries) { %>
+	<div class="photo-carousel-items">
+	<% 
+	for (FileEntry fileEntry : fileEntries) { 
+		String url = (String)fileEntry.getExpandoBridge().getAttribute("url");
+	%>
 	<div class="photo-carousel-item">
+		<c:if test="<%= Validator.isNotNull(url) && enableLink %>">
+			<a href="<%= url %>">
+		</c:if>
 		<img src="<%= DLUtil.getPreviewURL(fileEntry, fileEntry.getFileVersion(), themeDisplay, "") %>" />
+		<c:if test="<%= Validator.isNotNull(url) && enableLink %>">
+			</a>
+		</c:if>
 
 		<c:if test="<%= showTitle %>">
 			<div class="lfr-asset-title">
@@ -147,7 +157,24 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 		</div>
 	</div>
 	<% } %>
-	<div id="<portlet:namespace />photoCarouselCount" class="photo-carousel-count"><span class="photo-carousel-index-current"></span> / <span class="photo-carousel-count-total"><%= fileEntries.size() %></span></div>
+	</div>
+	<div class="photo-carousel-controls">
+		<div id="<portlet:namespace />photoCarouselCount" class="photo-carousel-count">
+			<span class="photo-carousel-index-current"></span>
+			<span class="photo-carousel-count-separator">/</span>
+			<span class="photo-carousel-count-total"><%= fileEntries.size() %></span>
+		</div>
+		<div id="<portlet:namespace />photoCarouselMenu" class="photo-carousel-menu">
+			<menu>
+				<li><a class="aui-carousel-menu-item aui-carousel-menu-play"></a></li>
+				<li><a class="aui-carousel-menu-item aui-carousel-menu-prev"></a></li>
+				<% for (int i = 0; i < fileEntries.size(); i++) {%>
+					<li><a class="aui-carousel-menu-item aui-carousel-menu-index"><%= (i + 1) %></a></li>
+				<% } %>
+				<li><a class="aui-carousel-menu-item aui-carousel-menu-next"></a></li>
+			</menu>
+		</div>
+	</div>
 </div>
 <br />
 
@@ -163,7 +190,8 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 			intervalTime: <%= transitionDelay %>,
 			width: <%= carouselWidth %>,
 			playing: <%= autoTransition %>,
-			itemSelector: '.photo-carousel-item'
+			itemSelector: '.photo-carousel-item',
+			nodeMenu: '#<portlet:namespace />photoCarouselMenu menu'
 		}
 	);
 

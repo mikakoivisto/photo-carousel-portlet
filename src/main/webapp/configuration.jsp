@@ -50,6 +50,8 @@ if (rootFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
 	<aui:input name="preferences--showCategorization--" type="checkbox" value="<%= showCategorization %>"/>
 
+	<aui:input name="preferences--enableLink--" type="checkbox" value="<%= enableLink %>"/>
+
 	<aui:input name="preferences--carouselWidth--" value="<%= carouselWidth %>" />
 
 	<aui:input name="preferences--carouselHeight--" value="<%= carouselHeight %>" />
