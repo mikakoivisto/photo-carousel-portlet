@@ -49,7 +49,7 @@ try {
 		}
 	}
 	else {
-		fileEntries = DLAppServiceUtil.getFileEntries(repositoryId, parentFolderId);
+		fileEntries.addAll(DLAppServiceUtil.getFileEntries(repositoryId, parentFolderId));
 	}
 }
 catch (NoSuchFolderException nsfe) {
