@@ -37,15 +37,7 @@
 			<plugin>
 				<groupId>com.liferay.maven.plugins</groupId>
 				<artifactId>liferay-maven-plugin</artifactId>
-				<version>${liferay.version}</version>
-				<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<!--goal>build-css</goal-->
-						</goals>
-					</execution>
-				</executions>
+				<version>${liferay.maven.plugin.version}</version>
 				<configuration>
 					<autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
 					<appServerDeployDir>${liferay.app.server.deploy.dir}</appServerDeployDir>
@@ -54,6 +46,14 @@
 					<liferayVersion>${liferay.version}</liferayVersion>
 					<pluginType>portlet</pluginType>
 				</configuration>
+				<executions>
+					<execution>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>build-css</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -138,5 +138,6 @@
 	</dependencies>
 	<properties>
 		<liferay.version>6.1.1</liferay.version>
+		<liferay.maven.plugin.version>6.1.2</liferay.maven.plugin.version>
 	</properties>
 </project>
