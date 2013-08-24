@@ -6,7 +6,7 @@
 	<artifactId>photo-carousel-portlet</artifactId>
 	<packaging>war</packaging>
 	<name>photo-carousel-portlet Portlet</name>
-	<version>1.0.0.1</version>
+	<version>1.1.0.1-SNAPSHOT</version>
 	<url>http://javaguru.fi/projects/photo-carousel-portlet</url>
 	<developers>
 		<developer>
